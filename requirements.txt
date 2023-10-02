@@ -1,0 +1,5 @@
+python-jose
+passlib
+pymongo
+fastapi[all]
+uvicorn

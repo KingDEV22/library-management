@@ -11,8 +11,8 @@ class PermissionChecker:
         self.required_roles = required_roles
 
     def __call__(self, user: any = Depends(jwt_authenticate)) -> bool:
-        for role in user['role']:
-            if role not in self.required_roles:
+        for role in self.required_roles:
+            if role not in user['role']:
                 logging.error("User don't have specific role: ", role, "!!!!!!")
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,

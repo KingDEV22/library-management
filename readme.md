@@ -22,12 +22,14 @@ The features of this app:
 
 Sample Body:
 
-```{
+```
+{
   "name": "King Biswas",
   "email": "king@gmail.com",
   "role": ["user"],
   "password": "test123"
-}```
+}
+```
 
 Response code : *201* for success, *422* for Validation Error 
 
@@ -35,8 +37,10 @@ Response code : *201* for success, *422* for Validation Error
 
 Sample form-data:
 
-```username:king@gmail.com
-   password:test123```
+```
+username:king@gmail.com
+password:test123
+```
 
 Response code : *200* for success, *422* for Validation Error 
 
@@ -46,7 +50,8 @@ Sample Header: ```Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ
 
 Sample Body:
 
-```[
+```
+[
   {
     "isbn": "9780132350884",
     "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
@@ -128,7 +133,8 @@ Response code : *201* for success, *422* for Validation Error
 Sample Header: ```Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsImV4cCI6MTY5NjIzNjI0OX0.wbgp2icCIHv6MEZ7yDe2kkpFvEUolHmZfMcbthEOLBU```
 
 Sample Body:  
-```{
+```
+{
     "isbn": "978-3-16-148410-23023"
 }
 ```
@@ -156,7 +162,8 @@ Sample output:
     "published_year": 0,
     "quantity": 0
   }
-]```
+]
+```
 
 
 ```/api/book/user/search``` *GET* : to search based on query
@@ -181,7 +188,8 @@ Sample output:
     "published_year": 0,
     "quantity": 0
   }
-]```
+]
+```
 
 ```/api/book/user/personalize``` *GET* : get personalised books recommendation based on borrowed book history
 
@@ -199,16 +207,19 @@ Sample output:
     "published_year": 0,
     "quantity": 0
   }
-]```
+]
+```
 
 ```/api/book/user/borrow``` *POST* : to borrow books
 
 Sample Header: ```Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsImV4cCI6MTY5NjIzNjI0OX0.wbgp2icCIHv6MEZ7yDe2kkpFvEUolHmZfMcbthEOLBU```
 
 Sample Body : 
-```{
+```
+{
   "isbn": "string"
-}```
+}
+```
 
 Response code : *201* for success, *422* for Validation Error 
 
@@ -218,15 +229,18 @@ Sample Output:
   "user_id": "string",
   "book_id": "string",
   "borrow_date": "2023-10-02T06:55:29.503Z"
-}```
+}
+```
 
 ```/api/book/user/return``` *POST* : to return issued books
 
 Sample Header: ```Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsImV4cCI6MTY5NjIzNjI0OX0.wbgp2icCIHv6MEZ7yDe2kkpFvEUolHmZfMcbthEOLBU```
 
 Sample Body : 
-```{
+```
+{
   "isbn": "string"
-}``
+}
+```
 
 Response code : *200* for success, *422* for Validation Error

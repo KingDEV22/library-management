@@ -90,7 +90,7 @@ async def recommend_books(
     return recommended_books
 
 
-@router.post("/borrow", response_model=schema.BookIssueResponse)
+@router.post("/borrow", response_model=schema.BookIssueResponse, status_code=status.HTTP_201_CREATED)
 async def borrow_book(
     borrowRequest: schema.BookRequest,
     current_user: schema.UserSchema = Depends(

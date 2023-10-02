@@ -1,5 +1,10 @@
-from app.oath import jwt_authenticate
 from fastapi import Depends,HTTPException,status
+import logging
+
+from app.oath import jwt_authenticate
+
+# Set up a logger with basic configuration
+logging.basicConfig(level=logging.INFO)
 class PermissionChecker:
 
     def __init__(self, required_roles: list[str]) -> None:
@@ -8,8 +13,10 @@ class PermissionChecker:
     def __call__(self, user: any = Depends(jwt_authenticate)) -> bool:
         for role in user['role']:
             if role not in self.required_roles:
+                logging.error("User don't have specific role: ", role, "!!!!!!")
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Don't have permissions to access the resources..."
                 )
+        logging.info("User verfied. Has the specific role")
         return user

@@ -12,6 +12,7 @@ class UserSchema(BaseModel):
     class Config:
         orm_mode = True
 
+
 class UserInDB(UserSchema):
     password: str
 
@@ -27,28 +28,26 @@ class Token(BaseModel):
 
 
 class Book(BaseModel):
-    isbn: str = ""
-    title: str = ""
-    author: str = ""
+    isbn: str | None = None
+    title: str | None = None
+    author: str | None = None
     published_year: int = 0
     quantity: int = 0
 
+
 class BookRequest(BaseModel):
-    isbn: str = ""
+    isbn: str
+
 
 class IssuedBook(BaseModel):
-    user_id: str = ""
-    book_id: str = ""
+    user_id: str
+    book_id: str
     borrow_date: datetime | None = None
     return_date: datetime | None = None
     returned_book: bool = False
 
+
 class BookIssueResponse(BaseModel):
-    user_id: str = ""
-    book_id: str = ""
+    user_id: str
+    book_id: str
     borrow_date: datetime | None = None
-
-
-# class UserResponse(BaseModel):
-#     status: str
-#     user: UserResponseSchema

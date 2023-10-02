@@ -1,18 +1,33 @@
 from pymongo import mongo_client
 import pymongo
+import logging
+
 from app.config import settings
 
-client = mongo_client.MongoClient(
-    settings.DB_URL, serverSelectionTimeoutMS=5000)
+def connect_db():
+    client = mongo_client.MongoClient(settings.DB_URL, serverSelectionTimeoutMS=5000)
+    try:
+        conn = client.server_info()
+        logging.info(f'Connected to MongoDB {conn.get("version")}')
+    except Exception:
+        logging.error("Unable to connect to the MongoDB server.")
+    return client
 
-try:
-    conn = client.server_info()
-    print(f'Connected to MongoDB {conn.get("version")}')
-except Exception:
-    print("Unable to connect to the MongoDB server.")
 
+# fucntion to close connection with mongodb
+def close_connection(client):
+    if not client:
+        client.close()
+        logging.info("Connection closed!!")
+
+
+client = connect_db()
+# connect to specific database
 db = client[settings.MONGODB_DATABASE]
-User = db.users
+
+# creating instance of the respective collection
+User = db[settings.USER_COLLECTION]
+Book = db[settings.BOOK_COLLECTION]
+IssuedBook = db[settings.ISSUE_COLLECTION]
+
 User.create_index([("email", pymongo.ASCENDING)], unique=True)
-Book = db.books
-IssuedBook = db.issue_books
